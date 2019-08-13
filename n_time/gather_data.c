@@ -45,8 +45,8 @@ void read_memory(const char* filename_in, const char* filename_out){
     nwrite = fwrite(buffer, 1, (len+nread), fp);
     fclose(fp);
 }
-int main(void){
+int main(int argc, char *argv[]){
     //n_time();
     //read_file("/sys/fs/cgroup/memory/docker/972e3860906ba4392f9b28bfbe085eda6e58a68e8c995721bbd77c7ccc263978/memory.stat","/tmp/memory_test.txt");
-    read_memory("/sys/fs/cgroup/memory/docker/972e3860906ba4392f9b28bfbe085eda6e58a68e8c995721bbd77c7ccc263978/memory.stat", "/tmp/memory_test.txt");
+    read_memory(argv[1], argv[2]);
 }
