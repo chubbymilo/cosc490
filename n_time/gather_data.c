@@ -56,6 +56,10 @@ int main(int argc, char *argv[]){
     long sleep = atol(b);
     sleep_time.tv_sec = 0;
     sleep_time.tv_nsec = sleep;
+    if(argc != 5){
+        printf("Usage: [target file path][output file path][repeated times][sleep time interval]\n");
+        return -1;
+    }
      /*
     time_t start = time(NULL);
     time_t now = time(NULL);
