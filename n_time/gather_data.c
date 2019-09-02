@@ -315,13 +315,19 @@ void read_network(const char* filename_in, const char* filename_out){
 
 int main(int argc, char *argv[]){
     int i;
-    struct timespec sleep_time;
+    struct timespec sleep_time, start, end;
     char *a;
     char *b;
     int repeat;
     long sleep;
     sleep_time.tv_sec = 0;
     sleep_time.tv_nsec;
+    long long start_time, end_time;
+    char buffer[20];
+    char buffer2[20];
+    int len;
+
+    
    
     if(argc != 5 && argc !=6){
         printf("Usage: [target file path][output file path][repeated times][sleep time interval]\n");
@@ -351,30 +357,46 @@ int main(int argc, char *argv[]){
     }*/
         if( argc == 5){
             if ((strcmp(argv[2],"/tmp/cpu_log.txt")) == 0){
+                timespec_get(&start, TIME_UTC);
                 for(i = 0; i < repeat; i++){
             read_cpu(argv[1], argv[2]);
             nanosleep(&sleep_time,NULL);
         }
-            }else if((strcmp(argv[2],"/tmp/block_log.txt")) == 0){    
+        timespec_get(&end, TIME_UTC);
+            }else if((strcmp(argv[2],"/tmp/block_log.txt")) == 0){
+                timespec_get(&start, TIME_UTC);    
         for(i = 0; i < repeat; i++){
             read_block(argv[1], argv[2]);
             nanosleep(&sleep_time,NULL);
         }
+        timespec_get(&end, TIME_UTC);
             }else if ((strcmp(argv[2],"/tmp/network_log.txt")) == 0){
+                timespec_get(&start, TIME_UTC);
                 for(i = 0; i < repeat; i++){
             read_network(argv[1], argv[2]);
             nanosleep(&sleep_time,NULL);
         }
+        timespec_get(&end, TIME_UTC);
             }else{
                 printf("typo\n");
                 return -1;
             }
         }else{
+            timespec_get(&start,TIME_UTC);
         for(i = 0; i < repeat; i++){
             read_memory(argv[1], argv[2], argv[3]);
             nanosleep(&sleep_time,NULL);
         }
+        timespec_get(&end, TIME_UTC);
         }
+
+        printf ("Start time : %lld%09ld\n", (long long)start.tv_sec, start.tv_nsec);
+        printf ("End time : %lld%09ld\n", (long long)end.tv_sec, end.tv_nsec);
+        len = sprintf(buffer,"%lld%09ld", (long long)start.tv_sec, start.tv_nsec);
+        len = sprintf(buffer2,"%lld%09ld", (long long)end.tv_sec, end.tv_nsec);
+        start_time = atol(buffer);
+        end_time = atol(buffer2);
+        printf("Duration: %lld\n", end_time-start_time);
     //n_time();
     //read_file("/sys/fs/cgroup/memory/docker/972e3860906ba4392f9b28bfbe085eda6e58a68e8c995721bbd77c7ccc263978/memory.stat","/tmp/memory_test.txt");
 }
