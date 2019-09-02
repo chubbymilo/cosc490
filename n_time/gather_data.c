@@ -65,7 +65,7 @@ void read_cpu(const char* filename_in, const char* filename_out){
         perror("getline: ");
         return;
     }
-    
+
     if (sprintf(buffer+len, "%s", line) < 0){
                  perror("sprintf:");
                  return;
@@ -281,7 +281,7 @@ void read_network(const char* filename_in, const char* filename_out){
 
     timespec_get(&ts, TIME_UTC); //get current time.
     len = sprintf(buffer, "%lld%09ld\n", (long long)ts.tv_sec, ts.tv_nsec); //format the time and put it into the buffer.
-    line_num = 5;
+    line_num = 2; //for mac's vm, the number is 2, for windows is 5.
      while ((numread = getline(&line, &length, fp)) != -1){
          if (count == line_num){
              if (sprintf(buffer+len, "%s",line) < 0){
