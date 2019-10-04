@@ -5,6 +5,13 @@ Five runs of creating a post of a Drupal website and a WordPress website, five r
 
 One zip file contains all the graphs from one run, for example, drupal_create_post_run_1 contains all the graphs generated for the Drupal container and its databse container, 32 graphs for one container. It has 64 graphs and 8 raw data files in total. 
 
+## Needed files to run the tool.
+start.sh
+gather_resource_data
+process_data.py
+docker-compose_drupal
+docker-compose_wordpress
+
 ## Start the Drupal and WordPress containers.
 -- Download a chromedriver.
 
