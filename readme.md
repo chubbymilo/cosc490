@@ -1,4 +1,4 @@
-# cosc490
+# COSC490
 ## All graphs generated from the experiments
 Five runs of creating a post of a Drupal website and a WordPress website, five runs of viewing a post of a Drupal website and a WordPress website.
 
