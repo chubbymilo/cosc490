@@ -1,4 +1,19 @@
 # cosc490
+## All graphs generated from the experiments
+Five runs of creating a post of a Drupal website and a WordPress website, five runs of viewing a post of a Drupal website and a WordPress website.
+
+
+One zip file contains all the graphs from one run, for example, drupal_create_post_run_1 contains all the graphs generated for the Drupal container and its databse container, 32 graphs for one container. It has 64 graphs and 8 raw data files in total. 
+
+## Start the Drupal and WordPress containers.
+-- Download a chromedriver.
+
+-- Run docker desktop.
+
+-- Change the name of the docker file to run Drupal and WordPress container, from docker-compose_drupal to docker-compose when running a Drupal website. Same thing applies for the WordPress website.
+
+-- Example: docker-compose up -d
+
 ## Pre-setup:
 -- If it is on Windows, need to install WSL and set up WSL following this guide https://nickjanetakis.com/blog/setting-up-docker-for-windows-and-wsl-to-work-flawlessly
 , Then change in start.sh on line 9 about the IP address.
