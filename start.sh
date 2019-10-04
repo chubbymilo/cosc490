@@ -1,13 +1,15 @@
 #!/bin/bash
+control_container_name='romantic_cerf'
+repeat='2000'
+time_interval='10000000'
+port='49999'
+#uncommon the line if the host OS is MAC.
+export ip=`ipconfig getifaddr en0`
+#uncommon the line if the host OS is windows.
+#export ip=`hostname -I | awk '{print $1}'`
 
 if [ "$#" -eq 2 ]; then
-    port='49999'
-    #uncommon the line if the host OS is MAC.
-    export ip=`ipconfig getifaddr en0`
-    #uncommon the line if the host OS is windows.
-    #export ip=`hostname -I | awk '{print $1}'`
-    repeat='15000'
-    time_interval='1000000'
+    
     file_c_vm='cpu_log.txt'
     file_m_vm='memory_log.txt'
     file_b_vm='block_log.txt'
@@ -32,7 +34,7 @@ memory_file2="/sys/fs/cgroup/memory/docker/$container_id/memory.usage_in_bytes"
 block_file="/sys/fs/cgroup/blkio/docker/$container_id/blkio.throttle.io_service_bytes"
 network_file="/proc/$container_pid/net/dev"
 
-va1=$(docker exec vigorous_buck /bin/sh -c "grep -n 'eth0:' $network_file")
+va1=$(docker exec $control_container_name /bin/sh -c "grep -n 'eth0:' $network_file")
 target_index=${va1:0:1}
 
 nc -l $port | tar -x &
@@ -54,7 +56,7 @@ export pid5=$!
 # rm $cpu_out_file ; rm $memory_out_file ; rm $block_out_file ; rm $network_out_file "
 
 
-docker exec vigorous_buck /bin/sh -c "/tmp/exec/gather_resource_data $cpu_file $cpu_out_file $repeat $time_interval & export pid1=$! ;
+docker exec $control_container_name /bin/sh -c "/tmp/exec/gather_resource_data $cpu_file $cpu_out_file $repeat $time_interval & export pid1=$! ;
 /tmp/exec/gather_resource_data $memory_file $memory_file2 $memory_out_file $repeat $time_interval & export pid2=$! ;
 /tmp/exec/gather_resource_data $block_file $block_out_file $repeat $time_interval & export pid3=$! ;
 /tmp/exec/gather_resource_data $network_file $network_out_file $target_index $repeat $time_interval & export pid4=$! ;
@@ -66,12 +68,7 @@ rm $cpu_out_file ; rm $memory_out_file ; rm $block_out_file ; rm $network_out_fi
 # & python3 process_data3.py $1 $2
  
 elif [ "$#" -eq 3 ]; then
-port='49999'
-#ip='192.168.178.51'
-#export ip=`ipconfig getifaddr en0`
-export ip=`hostname -I | awk '{print $1}'`
-repeat='15000'
-time_interval='1000000'
+
 file_c_vm='cpu_log.txt'
 file_m_vm='memory_log.txt'
 file_b_vm='block_log.txt'
@@ -117,17 +114,17 @@ network_file2="/proc/$container_pid2/net/dev"
 
 
 #find the index of eth0, as it changes over the time
-va1=$(docker exec vigorous_buck /bin/sh -c "grep -n 'eth0:' $network_file")
+va1=$(docker exec $control_container_name /bin/sh -c "grep -n 'eth0:' $network_file")
 target_index=${va1:0:1}
 
-va1=$(docker exec vigorous_buck /bin/sh -c "grep -n 'eth0:' $network_file2")
+va1=$(docker exec $control_container_name /bin/sh -c "grep -n 'eth0:' $network_file2")
 target_index2=${va1:0:1} 
 
 
 nc -l $port | tar -x &
 export pid5=$!
 
-docker exec vigorous_buck /bin/sh -c "/tmp/exec/gather_resource_data $cpu_file $cpu_out_file $repeat $time_interval & export pid1=$! ;
+docker exec $control_container_name /bin/sh -c "/tmp/exec/gather_resource_data $cpu_file $cpu_out_file $repeat $time_interval & export pid1=$! ;
 /tmp/exec/gather_resource_data $cpu_file2 $cpu_out_file2 $repeat $time_interval & export pid6=$! ;
 /tmp/exec/gather_resource_data $memory_file $memory_file2 $memory_out_file $repeat $time_interval & export pid2=$! ;
 /tmp/exec/gather_resource_data $memory_file3 $memory_file4 $memory_out_file2 $repeat $time_interval & export pid7=$! ;
