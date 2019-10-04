@@ -1,15 +1,15 @@
-#cosc490
-Pre-setup:
-If it is on Windows, need to install WSL and set up WSL following this guide https://nickjanetakis.com/blog/setting-up-docker-for-windows-and-wsl-to-work-flawlessly
-Then change in start.sh on line 9 about the IP address.
+# cosc490
+## Pre-setup:
+-- If it is on Windows, need to install WSL and set up WSL following this guide https://nickjanetakis.com/blog/setting-up-docker-for-windows-and-wsl-to-work-flawlessly
+, Then change in start.sh on line 9 about the IP address.
 
-Need to know the container's name that you wish to monitor, for example, wordpress_wordpress_1.
+-- Need to know the container's name that you wish to monitor, for example, wordpress_wordpress_1.
 
-Need to access the VM that manages docker containers; run: docker run -it --rm --privileged --pid=host justincormack/nsenter1
+-- Need to access the VM that manages docker containers; run: docker run -it --rm --privileged --pid=host justincormack/nsenter1
 
-Use docker ps to get the name of the running container, put this name into variable name 'control_container_name'
+-- Use docker ps to get the name of the running container, put this name into variable name 'control_container_name'
 
-Need to set up a 'exec' folder which can execute C program; run:
+-- Need to set up a 'exec' folder which can execute C program; run:
 cd /tmp
 
 mkdir etc
@@ -26,13 +26,13 @@ mkdir exec
 
 mount /tmp/exec
 
-Need to transfer the C program inside the VM, for example:
+-- Need to transfer the C program inside the VM, for example:
 
 On host: nc -l 50000  < gather_resource_data
 
 On VM: nc 192.168.178.51 50000 > gather_resource_data
 
-Running the tool:
+## Running the tool:
 
 On host machine, in the folder which contains a chrome driver and the Python script 
 
