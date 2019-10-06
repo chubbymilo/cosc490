@@ -20,7 +20,7 @@ docker-compose_wordpress
 ## Start the Drupal and WordPress containers.
 -- Download a chromedriver.
 
--- Run docker desktop.
+-- Run the Docker Desktop.
 
 -- Change the name of the docker file to run Drupal and WordPress container, from docker-compose_drupal to docker-compose when running a Drupal website. Same thing applies for the WordPress website.
 
