@@ -47,6 +47,8 @@ cp -ar /etc/* .
 
 cd ..
 
+mount --bind /tmp/etc /etc
+
 echo 'tmpfs /tmp/exec tmpfs defaults 0 0' >> /etc/fstab
 
 mkdir exec
