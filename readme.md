@@ -1,4 +1,10 @@
 # COSC490
+
+A research project on the performance comparison between different CMS.
+A fine-grained resource measurement tool is developed for containerized software.
+This repository contains the source codes of the tool and the corresponding codes of workloads and graphs generator.
+The defined workloads in this project are creating, updating, viewing, and deleting a post on a website based on Wordpress and Drupal.
+
 ## All graphs generated from the experiments
 Five runs of creating a post of a Drupal website and a WordPress website, five runs of viewing a post of a Drupal website and a WordPress website.
 
