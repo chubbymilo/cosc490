@@ -1,9 +1,20 @@
 # COSC490
-
+[Thesis Available Here](https://drive.google.com/file/d/1EfV3fTNA2H00g1PDy9yAQvthnAtS4dZM/view)
 A research project on the performance comparison between different CMS.
 A fine-grained resource measurement tool is developed for containerized software.
 This repository contains the source codes of the tool and the corresponding codes of workloads and graphs generator.
 The defined workloads in this project are creating, updating, viewing, and deleting a post on a website based on WordPress and Drupal.
+
+## Example graphs generated from the tool
+The graphs show the CPU usage for different phases of interactions (Creating a post) on a Drupal website..
+
+![https://i.ibb.co/xqgXPh5/drupal-drupal-1-create-cpu-phase1.jpg](https://i.ibb.co/xqgXPh5/drupal-drupal-1-create-cpu-phase1.jpg)
+![https://i.ibb.co/jV2hCMT/drupal-drupal-1-create-cpu-phase2.jpg](https://i.ibb.co/jV2hCMT/drupal-drupal-1-create-cpu-phase2.jpg)
+![https://i.ibb.co/WH8x6pV/drupal-drupal-1-create-cpu-phase3.jpg](https://i.ibb.co/WH8x6pV/drupal-drupal-1-create-cpu-phase3.jpg)
+![https://i.ibb.co/k1kw2KR/drupal-drupal-1-create-cpu-phase4.jpg](https://i.ibb.co/k1kw2KR/drupal-drupal-1-create-cpu-phase4.jpg)
+![https://i.ibb.co/Wv9Tn94/drupal-drupal-1-create-cpu-phase5.jpg](https://i.ibb.co/Wv9Tn94/drupal-drupal-1-create-cpu-phase5.jpg)
+![https://i.ibb.co/ctdn2Vd/drupal-drupal-1-create-cpu-phase6.jpg](https://i.ibb.co/ctdn2Vd/drupal-drupal-1-create-cpu-phase6.jpg)
+
 
 ## All graphs generated from the experiments
 Five runs of creating and viewing a post of a Drupal website and a WordPress website.
